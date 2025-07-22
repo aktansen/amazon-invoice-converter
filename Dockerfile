@@ -1,11 +1,16 @@
-FROM python:3.10-slim
+FROM python:3.11-slim
 
-RUN apt-get update && apt-get install -y tesseract-ocr && apt-get clean
+# Sistemde tesseract kurulumu
+RUN apt-get update && apt-get install -y tesseract-ocr poppler-utils
 
+# Çalışma dizinini belirle
 WORKDIR /app
-COPY . /app
 
+# Gerekli dosyaları kopyala
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["gunicorn", "-b", "0.0.0.0:10000", "app:app"]
-RUN apt-get update && apt-get install -y tesseract-ocr
+COPY . .
+
+# Uygulamayı başlat
+CMD ["gunicorn", "--bind", "0.0.0.0:10000", "app:app"]
