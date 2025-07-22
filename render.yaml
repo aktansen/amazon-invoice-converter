@@ -1,11 +1,5 @@
 services:
   - type: web
     name: amazon-invoice-converter
-    env: python
+    env: docker
     plan: free
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app
-    build:
-      packages:
-        - tesseract-ocr
-        - poppler-utils
