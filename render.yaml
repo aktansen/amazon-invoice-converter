@@ -1,5 +1,7 @@
 services:
   - type: web
     name: amazon-invoice-converter
-    env: docker
+    env: python
     plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
