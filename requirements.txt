@@ -1,6 +1,6 @@
-flask
-pytesseract
-pdf2image
-pandas
-openpyxl
+Flask==2.2.5
 gunicorn
+pytesseract
+pandas
+pdf2image
+openpyxl
